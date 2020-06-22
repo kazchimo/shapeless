@@ -698,6 +698,8 @@ trait CaseClassMacros extends ReprTypes with CaseClassMacrosVersionSpecifics {
     mkAttributedRef(pre, getter)
   }
 
+  /** Check if `sym` is annotated by [[nonGeneric]]
+   *  including more processes to avoid known issues about annotation and macro. */
   def isNonGeneric(sym: Symbol): Boolean = {
     def check(sym: Symbol): Boolean = {
       // See https://issues.scala-lang.org/browse/SI-7424
