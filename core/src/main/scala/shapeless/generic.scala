@@ -723,7 +723,7 @@ trait CaseClassMacros extends ReprTypes with CaseClassMacrosVersionSpecifics {
 
   def devarargify(tpe: Type): Type =
     tpe match {
-      case TypeRef(pre, _, args) if isVararg(tpe) =>
+      case TypeRef(_, _, args) if isVararg(tpe) =>
         appliedType(varargTC, args)
       case _ => tpe
     }
@@ -840,7 +840,7 @@ trait CaseClassMacros extends ReprTypes with CaseClassMacrosVersionSpecifics {
           narrow(tree, tpe)
 
       def mkCtorDtor0(elems0: List[(TermName, Type)]) = {
-        val elems = elems0.map { case (name, tpe) => (TermName(c.freshName("pat")), tpe) }
+        val elems = elems0.map { case (_, tpe) => (TermName(c.freshName("pat")), tpe) }
         val pattern = pq"${companionRef(tpe)}(..${elems.map { case (binder, tpe) => if(isVararg(tpe)) pq"$binder @ $repWCard" else pq"$binder"}})"
         val reprPattern =
           elems.foldRight(q"_root_.shapeless.HNil": Tree) {
