@@ -725,6 +725,13 @@ trait CaseClassMacros extends ReprTypes with CaseClassMacrosVersionSpecifics {
   def isVararg(tpe: Type): Boolean =
     tpe.typeSymbol == c.universe.definitions.RepeatedParamClass
 
+  /**
+   * Convert a varargs type to corresponding Seq type.
+   *
+   * {{{
+   *   String* -> Seq[String]
+   * }}}
+   */
   def devarargify(tpe: Type): Type =
     tpe match {
       case TypeRef(_, _, args) if isVararg(tpe) =>
