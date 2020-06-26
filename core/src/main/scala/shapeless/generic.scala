@@ -328,6 +328,10 @@ trait CaseClassMacros extends ReprTypes with CaseClassMacrosVersionSpecifics {
     nameStr.contains("$anon") || nameStr == "<refinement>"
   }
 
+  /**
+   * @return the List of pair of `tpe` case accessor like term's name and final result type of that term.
+   * @see [[isCaseAccessorLike]] for the definition of case accessor "like".
+   * */
   def fieldsOf(tpe: Type): List[(TermName, Type)] = {
     val clazz = tpe.typeSymbol.asClass
     val isCaseClass = clazz.isCaseClass
