@@ -489,6 +489,9 @@ trait CaseClassMacros extends ReprTypes with CaseClassMacrosVersionSpecifics {
       appliedType(cons, List(devarargify(tpe), acc))
     }
 
+  /**
+   * Convert `items` to corresponding HList type.
+   */
   def mkHListTpe(items: Seq[Type]): Type =
     mkCompoundTpe(hnilTpe, hconsTpe, items)
 
