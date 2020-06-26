@@ -477,6 +477,13 @@ trait CaseClassMacros extends ReprTypes with CaseClassMacrosVersionSpecifics {
       case (elem, acc) => q"_root_.shapeless.::($elem, $acc)"
     }
 
+  /**
+   * Fold `items` into a type using `cons` as a type constructor.
+   *
+   * {{{
+   *   mkCompoundTpe(hnilTpe, hconsTpe, Seq(typeOf[String], typeOf[Int])) -> String :: Int :: HNil
+   * }}}
+   */
   def mkCompoundTpe(nil: Type, cons: Type, items: Seq[Type]): Type =
     items.foldRight(nil) { (tpe, acc) =>
       appliedType(cons, List(devarargify(tpe), acc))
