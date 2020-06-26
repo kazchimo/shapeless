@@ -495,6 +495,9 @@ trait CaseClassMacros extends ReprTypes with CaseClassMacrosVersionSpecifics {
   def mkHListTpe(items: Seq[Type]): Type =
     mkCompoundTpe(hnilTpe, hconsTpe, items)
 
+  /**
+   * Convert `items` to corresponding Coproduct type.
+   */
   def mkCoproductTpe(items: Seq[Type]): Type =
     mkCompoundTpe(cnilTpe, cconsTpe, items)
 
