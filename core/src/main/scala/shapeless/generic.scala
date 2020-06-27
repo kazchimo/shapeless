@@ -288,6 +288,13 @@ trait CaseClassMacros extends ReprTypes with CaseClassMacrosVersionSpecifics {
     normalized <:< hlistTpe || normalized <:< coproductTpe
   }
 
+  /**
+   * Lower the order of type kind applying Any type.
+   *
+   * {{{
+   *   lowerKind(typeOf[List[_]].typeConstructor) -> List[Any]
+   * }}}
+   */
   def lowerKind(tpe: Type): Type =
     if(tpe.takesTypeArgs)
       appliedType(tpe, List(typeOf[Any])).dealias
