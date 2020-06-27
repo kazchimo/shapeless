@@ -182,7 +182,6 @@ class AnnotationMacros(val c: whitebox.Context) extends CaseClassMacros {
   /**
    * FIXME Most of the content of this method is cut-n-pasted from generic.scala
    *
-   * @throws ScalaReflectionException if `tpe` is not Class.
    * @return The AST of the `tpe` constructor.
    */
   def construct(tpe: Type): List[Tree] => Tree = {
