@@ -916,7 +916,7 @@ trait CaseClassMacros extends ReprTypes with CaseClassMacrosVersionSpecifics {
                 c.internal.gen.mkAttributedRef(pre, sym.asModule)
               case TypeRef(pre, sym, List()) if sym.isModuleClass =>
                 c.internal.gen.mkAttributedRef(pre, sym.asClass.module)
-              case other =>
+              case _ =>
                 abort(s"Bad case object-like type $tpe")
             }
           new CtorDtor {
