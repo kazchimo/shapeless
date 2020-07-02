@@ -290,6 +290,7 @@ trait CaseClassMacros extends ReprTypes with CaseClassMacrosVersionSpecifics {
 
   /**
    * Lower the order of type kind applying Any type.
+   * `tpe` is expected to have only one type parameter.
    *
    * {{{
    *   lowerKind(typeOf[List[_]].typeConstructor) -> List[Any]
@@ -336,8 +337,8 @@ trait CaseClassMacros extends ReprTypes with CaseClassMacrosVersionSpecifics {
   }
 
   /**
-   * @return the List of pair of `tpe` case accessor like term's name and final result type of that term.
-   * @see [[isCaseAccessorLike]] for the definition of case accessor "like".
+   * @return a List of name and type pairs for the fields of type `tpe`.
+   * @see [[isCaseAccessorLike]] for the definition of what is considered a field.
    * */
   def fieldsOf(tpe: Type): List[(TermName, Type)] = {
     val clazz = tpe.typeSymbol.asClass
